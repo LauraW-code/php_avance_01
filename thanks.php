@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   }  
   if (!isset($_POST['user_email']) || empty($_POST['user_email'])) {
     $errors[] = "L'e-mail est obligatoire"; 
-  }  
+  }
+  if (filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "L'email n'est pas au bon format";
+  } 
   if (!isset($_POST['user_message']) || empty($_POST['user_message'])) {
     $errors[] = "Le message est obligatoire"; 
   }  
